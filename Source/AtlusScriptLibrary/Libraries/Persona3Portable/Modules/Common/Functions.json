@@ -832,26 +832,26 @@
     "Index": "0x0035",
     "ReturnType": "int",
     "Name": "CHK_DAYS_STARTEND",
-    "Description": "Address: 0x08972B8C",
+    "Description": "Returns true if within the two dates",
     "Parameters": [
       {
         "Type": "int",
-        "Name": "param1",
+        "Name": "month1",
         "Description": ""
       },
       {
         "Type": "int",
-        "Name": "param2",
+        "Name": "day1",
         "Description": ""
       },
       {
         "Type": "int",
-        "Name": "param3",
+        "Name": "month2",
         "Description": ""
       },
       {
         "Type": "int",
-        "Name": "param4",
+        "Name": "day2",
         "Description": ""
       }
     ],
@@ -983,11 +983,11 @@
     "Index": "0x0040",
     "ReturnType": "void",
     "Name": "PARTY_IN",
-    "Description": "Address: 0x089734F8",
+    "Description": "Adds given party member id to party",
     "Parameters": [
       {
         "Type": "PartyMember",
-        "Name": "param1",
+        "Name": "id",
         "Description": ""
       }
     ],
@@ -999,11 +999,11 @@
     "Index": "0x0041",
     "ReturnType": "void",
     "Name": "PARTY_OUT",
-    "Description": "Address: 0x089735BC",
+    "Description": "Removes given party member id from party",
     "Parameters": [
       {
         "Type": "PartyMember",
-        "Name": "param1",
+        "Name": "id",
         "Description": ""
       }
     ],
@@ -1410,43 +1410,43 @@
   {
     "Index": "0x0064",
     "ReturnType": "void",
-    "Name": "NAVI_OPEN",
-    "Description": "Opens navigator bustup with parameters deciding which one to show.",
+    "Name": "CUTIN_START",
+    "Description": "Opens cutin with parameters deciding which one to show",
     "Parameters": [
       {
         "Type": "int",
-        "Name": "param1",
-        "Description": ""
+        "Name": "slotIndex",
+        "Description": "Start cutin loaded into this slot"
       },
       {
         "Type": "int",
-        "Name": "param2",
-        "Description": ""
+        "Name": "xPos",
+        "Description": "X position of cutin"
       },
       {
         "Type": "int",
-        "Name": "param3",
-        "Description": ""
+        "Name": "yPos",
+        "Description": "Y position of cutin"
       },
       {
         "Type": "int",
-        "Name": "param4",
-        "Description": "6 is Fuuka, 4 is Mitsuru."
+        "Name": "characterID",
+        "Description": "6 is Fuuka, 4 is Mitsuru. CX_0"
       },
       {
         "Type": "int",
-        "Name": "param5",
-        "Description": ""
+        "Name": "emotionID",
+        "Description": "C0_X"
       },
       {
         "Type": "int",
         "Name": "param6",
-        "Description": "Unknown type; assumed int"
+        "Description": "Appears to be ignored/unused. Unknown type; assumed int"
       },
       {
         "Type": "int",
         "Name": "param7",
-        "Description": "Unknown type; assumed int"
+        "Description": "Appears to be ignored/unused. Unknown type; assumed int"
       }
     ],
     "Aliases": [
@@ -1456,13 +1456,13 @@
   {
     "Index": "0x0065",
     "ReturnType": "void",
-    "Name": "NAVI_CLOSE",
-    "Description": "Closes navigator bustup.",
+    "Name": "CUTIN_STOP",
+    "Description": "Closes a loaded cutin",
     "Parameters": [
       {
         "Type": "int",
-        "Name": "param1",
-        "Description": ""
+        "Name": "slotIndex",
+        "Description": "Close cutin loaded in this slot"
       }
     ],
     "Aliases": [
