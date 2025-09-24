@@ -9,6 +9,8 @@
         "Type": "int",
         "Name": "param1",
         "Description": "",
+        "Name": "messageID",
+        "Description": "Index of message to display",
         "Semantic": "MsgId"
       }
     ],
@@ -46,6 +48,8 @@
         "Type": "int",
         "Name": "param1",
         "Description": "",
+        "Name": "selMessageID",
+        "Description": "Index of SEL message to use",
         "Semantic": "SelId"
       }
     ],
