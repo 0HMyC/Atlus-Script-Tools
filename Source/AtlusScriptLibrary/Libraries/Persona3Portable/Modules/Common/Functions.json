@@ -216,9 +216,12 @@
   {
     "Index": "0x000f",
     "ReturnType": "int",
-    "Name": "FUNCTION_000F",
-    "Description": "Address: 0x08978F28",
-    "Parameters": []
+    "Name": "FADE_SYNC",
+    "Description": "Waits until any playing fade animation finishes",
+    "Parameters": [],
+    "Aliases": [
+      "FUNCTION_000F"
+    ]
   },
   {
     "Index": "0x0010",
