@@ -196,17 +196,17 @@
     "Index": "0x000e",
     "ReturnType": "void",
     "Name": "FADE",
-    "Description": "Address: 0x08979CF8",
+    "Description": "Play an animation which fades out the screen, typically used for scene transitions",
     "Parameters": [
       {
         "Type": "int",
-        "Name": "param1",
-        "Description": ""
+        "Name": "animType",
+        "Description": "Determines which fade animation to play"
       },
       {
         "Type": "int",
-        "Name": "param2",
-        "Description": ""
+        "Name": "length",
+        "Description": "Number of frames animation should last (30 = 1s)"
       }
     ],
     "Aliases": [
