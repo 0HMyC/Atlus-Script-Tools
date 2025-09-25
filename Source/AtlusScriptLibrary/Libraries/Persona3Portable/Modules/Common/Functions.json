@@ -76,14 +76,17 @@
   {
     "Index": "0x0006",
     "ReturnType": "void",
-    "Name": "FUNCTION_0006",
-    "Description": "Address: 0x08982784",
+    "Name": "SEL_MASK",
+    "Description": "Sets bit mask for SEL",
     "Parameters": [
       {
         "Type": "int",
-        "Name": "param1",
-        "Description": ""
+        "Name": "bitMask",
+        "Description": "Each bit (rightmost to leftmost) corresponds to options top to bottom (ie 0b0001 hides first option, 0b0010 hides second etc.)"
       }
+    ],
+    "Aliases": [
+      "FUNCTION_0006"
     ]
   },
   {
