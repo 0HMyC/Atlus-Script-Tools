@@ -182,20 +182,23 @@
   {
     "Index": "0x000d",
     "ReturnType": "void",
-    "Name": "FUNCTION_000D",
-    "Description": "Address: 0x08979C98",
+    "Name": "FADEIN",
+    "Description": "Play last used FADEOUT (preserving colours if it was FADE_COLOR) animation, but reversed to fade in screen",
     "Parameters": [
       {
         "Type": "int",
-        "Name": "param1",
-        "Description": ""
+        "Name": "length",
+        "Description": "Number of frames animation should last (30 = 1s)"
       }
+    ],
+    "Aliases": [
+      "FUNCTION_000D"
     ]
   },
   {
     "Index": "0x000e",
     "ReturnType": "void",
-    "Name": "FADE",
+    "Name": "FADEOUT",
     "Description": "Play an animation which fades out the screen, typically used for scene transitions",
     "Parameters": [
       {
@@ -210,6 +213,7 @@
       }
     ],
     "Aliases": [
+      "FADE",
       "FUNCTION_000E"
     ]
   },
@@ -226,34 +230,37 @@
   {
     "Index": "0x0010",
     "ReturnType": "void",
-    "Name": "FUNCTION_0010",
-    "Description": "Address: 0x08979D70",
+    "Name": "FADE_COLOR",
+    "Description": "Play an animation which fades out the screen, using a specific color for the effect",
     "Parameters": [
       {
         "Type": "int",
-        "Name": "param1",
+        "Name": "animType",
+        "Description": "Determines which fade animation to play"
+      },
+      {
+        "Type": "int",
+        "Name": "length",
+        "Description": "Number of frames animation should last (30 = 1s)"
+      },
+      {
+        "Type": "int",
+        "Name": "red",
         "Description": ""
       },
       {
         "Type": "int",
-        "Name": "param2",
+        "Name": "green",
         "Description": ""
       },
       {
         "Type": "int",
-        "Name": "param3",
-        "Description": ""
-      },
-      {
-        "Type": "int",
-        "Name": "param4",
-        "Description": ""
-      },
-      {
-        "Type": "int",
-        "Name": "param5",
+        "Name": "blue",
         "Description": ""
       }
+    ],
+    "Aliases": [
+      "FUNCTION_0010"
     ]
   },
   {
@@ -542,11 +549,11 @@
     "Index": "0x0022",
     "ReturnType": "void",
     "Name": "BGM",
-    "Description": "Address: 0x0897939C",
+    "Description": "Plays bgm based on id (XX.ADX). Note that only IDs in a hard-coded list will actually play",
     "Parameters": [
       {
         "Type": "int",
-        "Name": "param1",
+        "Name": "id",
         "Description": ""
       }
     ],
@@ -738,14 +745,18 @@
   {
     "Index": "0x002d",
     "ReturnType": "void",
-    "Name": "FUNCTION_002D",
-    "Description": "Address: 0x08986A78",
+    "Name": "MSG_TUTORIAL",
+    "Description": "Displays msg on help screen",
     "Parameters": [
       {
         "Type": "int",
         "Name": "param1",
-        "Description": ""
+        "Description": "Index/name of msg to display",
+        "Semantic": "MsgId"
       }
+    ],
+    "Aliases": [
+      "FUNCTION_002D"
     ]
   },
   {
@@ -788,49 +799,62 @@
   {
     "Index": "0x0030",
     "ReturnType": "int",
-    "Name": "FUNCTION_0030",
-    "Description": "Address: 0x089729B0",
-    "Parameters": []
+    "Name": "GET_MONTH",
+    "Description": "Returns the current month",
+    "Parameters": [],
+    "Aliases": [
+      "FUNCTION_0030"
+    ]
   },
   {
     "Index": "0x0031",
     "ReturnType": "int",
-    "Name": "FUNCTION_0031",
-    "Description": "Address: 0x089729EC",
-    "Parameters": []
+    "Name": "GET_DAY",
+    "Description": "Returns the current day of the month",
+    "Parameters": [],
+    "Aliases": [
+      "FUNCTION_0031"
+    ]
   },
   {
     "Index": "0x0032",
     "ReturnType": "int",
-    "Name": "FUNCTION_0032",
-    "Description": "Address: 0x08972A28",
-    "Parameters": []
+    "Name": "GET_DAYOFWEEK",
+    "Description": "Returns the current day of the week",
+    "Parameters": [],
+    "Aliases": [
+      "FUNCTION_0032"
+    ]
   },
   {
     "Index": "0x0033",
     "ReturnType": "int",
-    "Name": "FUNCTION_0033",
-    "Description": "Address: 0x08972A58",
-    "Parameters": []
+    "Name": "GET_TIME",
+    "Description": "Returns current time of day",
+    "Parameters": [],
+    "Aliases": [
+      "FUNCTION_0033"
+    ]
   },
   {
     "Index": "0x0034",
     "ReturnType": "int",
-    "Name": "GET_DAY",
-    "Description": "Address: 0x08972A88",
+    "Name": "CHK_DAYS",
+    "Description": "Checks if on a specific month & day. TODO: Confirm this, and figure out if the alias system will allow using GET_DAY as an alias and as the name for FUNCTION_0031. Also what values does it return",
     "Parameters": [
       {
         "Type": "int",
-        "Name": "param1",
+        "Name": "month",
         "Description": ""
       },
       {
         "Type": "int",
-        "Name": "param2",
+        "Name": "day",
         "Description": ""
       }
     ],
     "Aliases": [
+      "GET_DAY",
       "FUNCTION_0034"
     ]
   },
@@ -1456,6 +1480,7 @@
       }
     ],
     "Aliases": [
+      "NAVI_OPEN",
       "FUNCTION_0064"
     ]
   },
@@ -1472,6 +1497,7 @@
       }
     ],
     "Aliases": [
+      "NAVI_CLOSE",
       "FUNCTION_0065"
     ]
   },
