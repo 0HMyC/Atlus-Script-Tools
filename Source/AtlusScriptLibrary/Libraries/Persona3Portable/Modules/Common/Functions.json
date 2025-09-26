@@ -840,7 +840,7 @@
     "Index": "0x0034",
     "ReturnType": "int",
     "Name": "CHK_DAYS",
-    "Description": "Checks if on a specific month & day. TODO: Confirm this, and figure out if the alias system will allow using GET_DAY as an alias and as the name for FUNCTION_0031. Also what values does it return",
+    "Description": "Checks if on a specific month & day, returning true/1 if so and 0 otherwise",
     "Parameters": [
       {
         "Type": "int",
