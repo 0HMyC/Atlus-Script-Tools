@@ -2255,13 +2255,31 @@ public class FlowScriptCompiler
                 }
             }
 
+            // Check if call has correct number of parameters
             if (callExpression.Arguments.Count != function.Declaration.Parameters.Count)
             {
                 // Check if function is marked variadic
                 if (libFunc == null || libFunc.Semantic != FlowScriptModuleFunctionSemantic.Variadic)
                 {
-                    Error($"Function '{function.Declaration}' expects {function.Declaration.Parameters.Count} arguments but {callExpression.Arguments.Count} are given");
-                    return false;
+                    // Check if a different function has an alias that matches and
+                    // with same number of params as callExpression.Arguments.Count
+                    if (!mRootScope.TryGetFunction(Library.FlowScriptModules.SelectMany(x => x.Functions).FirstOrDefault(x => x.Parameters.Count == callExpression.Arguments.Count && x.Aliases != null && x.Aliases.Contains(function.Declaration.Identifier.Text)).Name, out var altFunction))
+                    {
+                        // Function was not variadic and no alternative with matching number of
+                        // parameters & an alias was found, so throw an error and return false emit
+                        Error(callExpression, $"Function '{function.Declaration}' expects {function.Declaration.Parameters.Count} arguments but {callExpression.Arguments.Count} are given");
+                        return false;
+                    }
+                    /*
+                        An alternative function was found with matching number of parameters & an alias,
+                        so override function variable with it
+
+                        Also prints a warning message as this situation occurs when compiling scripts
+                        that weren't updated to use current/non-conflicting names, to let authors/users know
+                        that the script should be updated so that this scenario never occurs in the first place
+                    */
+                    Warning(callExpression, $"Function '{function.Declaration}' called with number of parameters and an alias name of '{altFunction.Declaration}';\n'{altFunction.Declaration}' will be emitted but script should be updated with correct function names!");
+                    function = altFunction;
                 }
             }
 
