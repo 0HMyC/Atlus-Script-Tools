@@ -2150,6 +2150,7 @@ public class FlowScriptCompiler
             // Unknown index
             // Start emitting subscript code
             var endLabel = CreateLabel($"SubscriptEndLabel");
+            bool arrayValuePushed = false;
             for (int i = 0; i < variable.Size; i++)
             {
                 var falseLabel = CreateLabel($"SubscriptIfNot{i}");
@@ -2168,17 +2169,26 @@ public class FlowScriptCompiler
                 Emit(Instruction.IF(falseLabel.Index));
                 {
                     // Fetch initializer from array initializer if one was supplied
-                    Expression initializer = null;
-                    if (arrayInitializer != null)
-                    {
-                        initializer = arrayInitializer.Expressions[i];
-                    }
+                    Expression initializer = arrayInitializer != null ? arrayInitializer.Expressions[i] : null;
 
                     // Push the value of array[index]
                     if (!TryEmitPushVariableValue(variable.Declaration.Modifier, variable.Declaration.Type.ValueKind, variable.GetArrayElementIndex(i),
                                                     initializer))
                     {
                         return false;
+                    }
+
+                    // Check if an array value was pushed yet and decrement mStackValueCount if so
+                    // This ensures that the above emitted PUSH instructions are only counted by the number of times
+                    // they can actually execute (which the control flow guarantees can only be once) as opposed
+                    // to the number of times they're emitted which would misleadingly throw "Possible return address corruption"
+                    if (arrayValuePushed)
+                    {
+                        --mStackValueCount;
+                    }
+                    else
+                    {
+                        arrayValuePushed = true;
                     }
 
                     // Jump to the end of the subscript code
